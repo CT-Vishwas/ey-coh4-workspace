@@ -6,3 +6,5 @@
 
 from app1.utils import username_extracter
 print(username_extracter("john.doe@gmail.com"))
+
+username_extracter()
