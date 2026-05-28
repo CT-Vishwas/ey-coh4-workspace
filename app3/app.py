@@ -1,6 +1,7 @@
 from extract import extract_data
 import pandas as pd
 import matplotlib.pyplot as plt
+from reporting import create_compliance_report, ReportData
 
 def main():
     file_path = "./data/cap_app_inventory.csv"
@@ -30,7 +31,7 @@ def main():
     ## End Here
     # Write the merged DataFrame to a new CSV file
     try:
-        merged_df.to_csv("./data/merged_data.csv", index=False)
+        merged_df.to_csv("./output/merged_data.csv", index=False)
         print("Merged data has been written to merged_data.csv")
     except Exception as e:
         print(f"An error occurred while writing the file: {e}")
@@ -68,14 +69,14 @@ def main():
 
     # Generate a report summarizing the insights (e.g., save to a text file)
     try:
-        with open('./output/compliance_report.txt', 'w') as report_file:
-            report_file.write("Compliance Status Counts:\n")
-            report_file.write(compliance_counts.to_string())
-            report_file.write("\n\nAverage Compliance Score by Department:\n")
-            avg_compliance_score = merged_df.groupby('Department')['Compliance_Score'].mean()
-            report_file.write(avg_compliance_score.to_string())
-            report_file.write("\n Report generated on: " + pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S"))
-        print("Compliance report has been written to compliance_report.txt")
+        report_data = ReportData(
+            company_title="Company Title",
+            status_counts=compliance_counts.to_dict(),
+            department_scores=merged_df.groupby('Department')['Compliance_Score'].mean().to_dict(),
+            generation_time=pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S"),
+            reporter_name="Reporter"
+        )
+        create_compliance_report(report_data)
     except Exception as e:
         print(f"An error occurred while generating the report: {e}")
 

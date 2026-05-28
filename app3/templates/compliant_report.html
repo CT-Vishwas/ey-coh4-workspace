@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compliance Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+            @bottom-left {
+                content: "Internal Use Only";
+                font-family: Arial, sans-serif;
+                font-size: 8pt;
+                color: #a0aec0;
+            }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            color: #2d3748;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #1a365d;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .divider {
+            border-top: 2px solid #e2e8f0;
+            margin: 20px 0;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #4a5568;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive-style grid layout for tables side-by-side or stacked cleanly */
+        .grid-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 25px;
+        }
+
+        .grid-box {
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            font-weight: 600;
+            border-bottom: 2px solid #bee3f8;
+        }
+
+        td {
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        /* Right-align numbers for clean alignment */
+        .text-right {
+            text-align: right;
+        }
+
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+            background-color: #f7fafc;
+            border: 1px dashed #cbd5e0;
+            padding: 40px;
+            border-radius: 4px;
+        }
+
+        .chart-placeholder-text {
+            color: #a0aec0;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 11px;
+            color: #718096;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Company Title Section -->
+    <div class="header">
+        <h1>{{ company_title }}</h1>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Data Tables Section -->
+    <div class="grid-container">
+        
+        <!-- Compliance Status Counts -->
+        <div class="grid-box">
+            <div class="section-title">Compliance Status Counts</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th class="text-right">Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for status, count in status_counts.items() %}
+                    <tr>
+                        <td>{{ status }}</td>
+                        <td class="text-right">{{ count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Average Compliance Score by Department -->
+        <div class="grid-box">
+            <div class="section-title">Average Compliance Score by Department</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th class="text-right">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dept, score in department_scores.items() %}
+                    <tr>
+                        <td>{{ dept }}</td>
+                        <td class="text-right">{{ "{:.1f}".format(score) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Chart Placeholder Section -->
+    <div class="section-title">Chart of Compliance Score By Department</div>
+    <div class="chart-container">
+        <!-- If you generate a real chart image dynamically, replace this div with: -->
+             <img src="{{ chart_path }}" style="width: 100%;">
+        <!-- <div class="chart-placeholder-text">[ Dynamic Visual Chart Component Embedded Here ]</div> -->
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Footer Meta Section -->
+    <div class="footer">
+        <div><strong>Report generated on:</strong> {{ generation_time }}</div>
+        <div><strong>Report By:</strong> {{ reporter_name }}</div>
+    </div>
+
+</body>
+</html>
