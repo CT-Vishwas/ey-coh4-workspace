@@ -1,0 +1,14 @@
+Compliance Status Counts:
+Status
+Compliant        2
+Non-Compliant    2
+Under Review     1
+
+Average Compliance Score by Department:
+Department
+Finance        70.0
+HR             95.0
+IT Security    45.0
+Logistics      85.0
+Sales          60.0
+ Report generated on: 2026-05-28 15:58:54

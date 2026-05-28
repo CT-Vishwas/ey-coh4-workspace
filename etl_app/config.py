@@ -19,9 +19,10 @@ class ETLConfig:
 def load_config(config_path: Optional[str] = None) -> ETLConfig:
     """Load ETL configuration from environment variables or a config file."""
     root = Path(config_path or os.getcwd())
-    source_path = Path(os.getenv("ETL_SOURCE_PATH", root / "data" / "source.csv"))
+    # source_path = Path(os.getenv("ETL_SOURCE_PATH", root / "data" / "source.csv"))
+    source_path = Path(os.getenv("ETL_SOURCE_PATH", root / "data"))    
     destination_path = Path(os.getenv("ETL_DESTINATION_PATH", root / "data" / "destination.csv"))
-    report_path = Path(os.getenv("ETL_REPORT_PATH", root / "reports" / "summary_report.csv"))
+    report_path = Path(os.getenv("ETL_REPORT_PATH", root / "reports"))
     log_level = os.getenv("ETL_LOG_LEVEL", "INFO")
     chunk_size = int(os.getenv("ETL_CHUNK_SIZE", "500"))
     source_type = os.getenv("ETL_SOURCE_TYPE", "csv")

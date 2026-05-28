@@ -1,0 +1,6 @@
+App_ID,App_Name,Department,Primary_Stakeholder,Hosting_Type,Audit_Date,Compliance_Score,Status,Last_Reviewer
+APP-001,Payroll Portal,HR,Sarah Jenkins,On-Premise,2026-03-15,95%,Compliant,Audit_Team_A
+APP-002,Customer CRM,Sales,Michael Chen,Cloud-AWS,2026-04-01,60%,Non-Compliant,Audit_Team_B
+APP-003,Inventory Sync,Logistics,Sarah Jenkins,Cloud-Azure,2026-03-20,85%,Compliant,Audit_Team_A
+APP-004,Global VPN,IT Security,David Miller,Hybrid,2026-04-05,45%,Non-Compliant,Audit_Team_C
+APP-005,Legacy Ledger,Finance,Robert Wilson,On-Premise,2026-02-28,70%,Under Review,Audit_Team_B
